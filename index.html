@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>We're Brewing Something Awesome!</title>
+    <title>Brewing Something</title>
     <style>
         /* Colorful, soothing animated gradient background */
         body, html {
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            overflow: hidden;
+            overflow: hidden; /* Prevents unwanted scrollbars */
             background: linear-gradient(45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
             background-size: 400% 400%;
             animation: gradientBG 10s ease infinite;
@@ -26,15 +27,16 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Glassmorphism Card Container (Stretched to 100% width to remove side gaps) */
+        /* Glassmorphism Card Container (Strict edge-to-edge, no lines/shadows) */
         .glass-card {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            width: 100%; /* Stretches edge to edge */
-            border-radius: 0; /* Removed rounded corners so it sits flush */
-            border: none;
-            box-shadow: none;
+            width: 100vw; /* Forces it to span the entire viewport width */
+            max-width: 100%; /* Prevents horizontal scrolling */
+            border-radius: 0; /* Ensures it sits completely flush */
+            border: none; /* Explicitly removes any edge lines */
+            box-shadow: none; /* Explicitly removes any shadow spilling up or down */
             padding: 50px 40px;
             text-align: center;
             z-index: 10;
