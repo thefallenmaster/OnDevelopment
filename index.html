@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We're Brewing Something Awesome!</title>
+    <style>
+        /* Colorful, soothing animated gradient background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+            background-size: 400% 400%;
+            animation: gradientBG 10s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Glassmorphism Card Container */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 50px 40px;
+            text-align: center;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            z-index: 10;
+            max-width: 500px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Fun interactive elements */
+        .score-board {
+            display: inline-block;
+            background: #fff;
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            color: #ff6b6b;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+
+        .score-board:hover {
+            transform: scale(1.05);
+        }
+
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Floating Interactive Bubbles */
+        .bubble {
+            position: absolute;
+            bottom: -50px;
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            cursor: crosshair;
+            transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+            animation: floatUp linear forwards;
+            z-index: 1;
+        }
+
+        .bubble:hover {
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        @keyframes floatUp {
+            to {
+                transform: translateY(-120vh);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glass-card">
+        <h1>Under Construction</h1>
+        <p>We are currently cooking up something amazing! While our developers are hard at work, feel free to pop some bubbles.</p>
+        
+        <div class="score-board">
+            Bubbles Popped: <span id="score">0</span>
+        </div>
+    </div>
+
+    <script>
+        // Mini-Game Logic: Bubble Popper
+        let score = 0;
+        const scoreDisplay = document.getElementById('score');
+
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+
+            // Randomize bubble size (between 30px and 80px)
+            const size = Math.random() * 50 + 30;
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+
+            // Randomize horizontal starting position
+            bubble.style.left = `${Math.random() * 100}vw`;
+
+            // Randomize floating speed (between 4s and 8s)
+            const duration = Math.random() * 4 + 4;
+            bubble.style.animationDuration = `${duration}s`;
+
+            // Interaction: Pop the bubble on click
+            bubble.addEventListener('click', () => {
+                score++;
+                scoreDisplay.innerText = score;
+                
+                // Pop effect
+                bubble.style.transform = 'scale(1.5)';
+                bubble.style.opacity = '0';
+                
+                // Remove from DOM after animation
+                setTimeout(() => {
+                    bubble.remove();
+                }, 200);
+            });
+
+            document.body.appendChild(bubble);
+
+            // Clean up bubbles that float off screen so the browser doesn't lag
+            setTimeout(() => {
+                if (document.body.contains(bubble)) {
+                    bubble.remove();
+                }
+            }, duration * 1000);
+        }
+
+        // Generate a new bubble every 600 milliseconds
+        setInterval(createBubble, 600);
+    </script>
+</body>
+</html>
