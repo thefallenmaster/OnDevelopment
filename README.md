@@ -21,7 +21,7 @@ You can embed the full page in another HTML document using an iframe like this:
 
 ```html
 <iframe
-  src="index.html"
+  src="https://thefallenmaster.github.io/OnDevelopment/"
   width="100%"
   height="700"
   frameborder="0"
