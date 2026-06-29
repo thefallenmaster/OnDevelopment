@@ -26,19 +26,19 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Glassmorphism Card Container */
+        /* Glassmorphism Card Container (Stretched to 100% width to remove side gaps) */
         .glass-card {
             background: rgba(255, 255, 255, 0.25);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: 100%; /* Stretches edge to edge */
+            border-radius: 0; /* Removed rounded corners so it sits flush */
+            border: none;
+            box-shadow: none;
             padding: 50px 40px;
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             z-index: 10;
-            max-width: 500px;
-            width: 90%;
+            box-sizing: border-box;
         }
 
         h1 {
@@ -69,12 +69,6 @@
 
         .score-board:hover {
             transform: scale(1.05);
-        }
-
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
         }
 
         /* Floating Interactive Bubbles */
