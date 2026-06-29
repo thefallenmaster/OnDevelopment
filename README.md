@@ -20,14 +20,40 @@ Use it for:
 You can embed the full page in another HTML document using an iframe like this:
 
 ```html
-<iframe
-  src="https://thefallenmaster.github.io/OnDevelopment/"
-  width="100%"
-  height="700"
-  frameborder="0"
-  style="border:none; min-height:700px;"
-  title="Under Construction Page"
-></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction Page</title>
+    <style>
+        /* Remove default margins and hide scrollbars on the main page */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; 
+        }
+
+        /* Force the iframe to fill the entire viewport */
+        iframe {
+            width: 100vw;
+            height: 100vh;
+            border: none;
+            display: block; /* Removes the tiny default bottom gap */
+        }
+    </style>
+</head>
+<body>
+
+    <iframe 
+        src="https://thefallenmaster.github.io/OnDevelopment/" 
+        title="Under Construction Page">
+    </iframe>
+
+</body>
+</html>
 ```
 
 If your page is hosted in a different folder, update the `src` path accordingly.
